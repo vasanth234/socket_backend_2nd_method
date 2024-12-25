@@ -2,12 +2,13 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
+require('dotenv').config(); // Load environment variables
 
 const app = express();
 
 // Allow CORS
 app.use(cors({
-  origin: 'http://localhost:51162/', // Replace with your frontend URL
+  origin: process.env.FRONTEND_URL, // Use the FRONTEND_URL from .env
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
 }));
@@ -15,7 +16,7 @@ app.use(cors({
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:51162/', // Replace with your frontend URL
+    origin: process.env.FRONTEND_URL, // Use FRONTEND_URL for CORS configuration
     methods: ['GET', 'POST']
   }
 });
