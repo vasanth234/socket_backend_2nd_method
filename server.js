@@ -7,6 +7,7 @@ require('dotenv').config(); // Load environment variables
 const app = express();
 
 // Allow CORS
+//by adding cors we can make elimiate cors error
 app.use(cors({
   origin: process.env.FRONTEND_URL, // Use the FRONTEND_URL from .env
   methods: ['GET', 'POST', 'OPTIONS'],
